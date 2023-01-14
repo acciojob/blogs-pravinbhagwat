@@ -6,6 +6,7 @@ import com.driver.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +21,7 @@ public class ImageService {
         Image image =  new Image(description, dimensions);
         image.setBlog(blog);
         List<Image> imageList = blog.getImageList();
+        if(imageList == null) imageList = new ArrayList<>();
         imageList.add(image);
         blog.setImageList(imageList);
         blogRepository.save(blog);
@@ -37,7 +39,7 @@ public class ImageService {
     public int countImagesInScreen(Image image, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
-        if(image == null) return 0;
+        if(image == null || screenDimensions.split("X").length == 2) return 0;
         String dimension = image.getDimensions();
         int screenSize = Integer.parseInt(screenDimensions.split("X")[0]) * Integer.parseInt(screenDimensions.split("X")[1]);
         int givenSize = Integer.parseInt(dimension.split("X")[0]) * Integer.parseInt(dimension.split("X")[1]);
