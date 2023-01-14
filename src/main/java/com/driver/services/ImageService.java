@@ -38,7 +38,7 @@ public class ImageService {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
         if(image == null) return 0;
-        String dimension = image.getDimension();
+        String dimension = image.getDimensions();
         int screenSize = Integer.parseInt(screenDimensions.split("X")[0]) * Integer.parseInt(screenDimensions.split("X")[1]);
         int givenSize = Integer.parseInt(dimension.split("X")[0]) * Integer.parseInt(dimension.split("X")[1]);
         return screenSize / givenSize;

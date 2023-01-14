@@ -30,12 +30,12 @@ public class UserService {
     }
 
     public User findUserByUsername(String username){
-//        return userRepository3.findByUsername(username);
-        List<User> userList = (List<User>) userRepository3.findAll();
-        for(User user : userList) {
-            if(user.getUsername().equals(username))
-                return user;
-        }
-        return null;
+        return userRepository3.findByUsername(username);
+//        List<User> userList = (List<User>) userRepository3.findAll();
+//        for(User user : userRepository3.findAll()) {
+//            if(user.getUsername().equals(username))
+//                return user;
+//        }
+//        return null;
     }
 }
